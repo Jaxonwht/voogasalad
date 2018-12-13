@@ -402,6 +402,21 @@ public class GameMethods {
         return false;
     }
 
+    public static int countClassAround(Tile tile, String className) {
+        int cnt = 0;
+        var x = tile.getX();
+        var y = tile.getY();
+        for(int i = -1 ; i <= 1 ; i ++) {
+            for(int j = -1 ; j < 1 ; j ++) {
+                var t = getTileAt(y+i, x+j);
+                if(t == null) continue;
+                var e = getEntityOver(t);
+                if(e == null) continue;
+                if(e.getName().equals(className)) cnt ++;
+            }
+        } return cnt;
+    }
+
     public static int randInt(int upperBound) {
         return new Random().nextInt(upperBound);
     }
