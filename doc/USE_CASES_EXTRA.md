@@ -81,4 +81,17 @@ The user can right-click on the instance of the tile and modify the properties n
 35. **The user can view a list of the game object instances they have added to the grid pane.**
 The user can choose from a drop-down menu to view a list of objects they have added to the grid edit pane.
 
-36.
+36. **The user can assign entities to the player**
+The user can choose the owner of entity from entity editor.
+
+37. **The user can set the background music sound**
+On the BGM setting under menu bar, the user can choose sound file and play the uploaded sound.
+
+38. **The user can resize the individual cell of the game**
+Under menu bar settings, the user can resize the individual cells' width and height.
+
+39. **The user can make win condition**
+Win condition Tab allows the user to create the win condition which will check during all turns of the game.
+
+40. **The user can generate multiple tiles.**
+The user can add tile, size, mode, probability under tile setting of menu bar settings.
