@@ -198,16 +198,16 @@
         <myPhaseID>1</myPhaseID>
         <myID>2</myID>
         <myExecution>
-            turn = GameMethods.getCurrentPlayerID()
+            turn = GameMethods.getCurrentPlayer()
             if(turn == 0) {
             entityName = "X";
             }
             else {
             entityName = "O";
             }
-            GameMethods.createEntity(entityName, $clicked.getID(), turn);
+            GameMethods.createEntity(entityName, $clicked.getID(), turn.getName());
             GameMethods.updateViews();
-            entities = GameMethods.getPlayer(turn).getMyEntities();
+            entities = turn.getMyEntities();
             def tileSet = [] as HashSet;
             for (Integer i : entities){ tileSet.add(GameMethods.getEntity(i).getTileID()); }
             if ((tileSet.contains(1) &amp;&amp; tileSet.contains(2) &amp;&amp; tileSet.contains(3)) ||
@@ -236,7 +236,6 @@
             else { $return = false }
         </myGuard>
     </gameplay.Edge>
-
     <gameplay.Turn>
         <myCurrentPhaseID>1</myCurrentPhaseID>
         <playersOrder>

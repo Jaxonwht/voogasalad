@@ -78,8 +78,8 @@ public class MainPlayer {
         myInitializer = new Initializer(myFile);
         myStage = new Stage();
         myInitializer.setScreenSize(700, 500);
-        Scene newScene = new Scene(myInitializer.getRoot(), View.GAME_WIDTH, View.GAME_HEIGHT + 50);
-        Button saveButton = new Button("Save state");
+        Scene newScene = new Scene(myInitializer.getRoot(), View.GAME_WIDTH, View.GAME_HEIGHT);
+        /*Button saveButton = new Button("Save state");
         saveButton.setLayoutY(View.GAME_HEIGHT);
         saveButton.setMinHeight(50);
         saveButton.setMinWidth(View.GAME_WIDTH);
@@ -90,7 +90,7 @@ public class MainPlayer {
             } catch (Exception ex) {
             }
         });
-        myInitializer.getRoot().getChildren().add(saveButton);
+        myInitializer.getRoot().getChildren().add(saveButton);*/
         myStage.setScene(newScene);
         myStage.show();
     }

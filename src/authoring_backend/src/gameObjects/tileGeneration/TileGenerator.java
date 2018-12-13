@@ -63,6 +63,8 @@ public class TileGenerator {
         rightLimit = topLeftCoord.getX() + numCols;
         bottomLimit = topLeftCoord.getY() + numRows;
         if (rightLimit > crudInterface.getNumCols() || bottomLimit > crudInterface.getNumRows()) {
+            System.out.println("actual right: " + rightLimit + " is larger than bound: " + crudInterface.getNumCols());
+            System.out.println("actual bottom: " + bottomLimit + " is larger than bound: " + crudInterface.getNumRows());
             throw new InvalidOperationException("Area out of bounds");
         }
     }
@@ -82,6 +84,7 @@ public class TileGenerator {
         int repeater = 0;
         for (int i = topLeftCoord.getY(); i < bottomLimit; i++) {
             for (int j = topLeftCoord.getX(); j < rightLimit; j++) {
+                System.out.println("Creating tile: " + repeater % noOfClasses + "at " + j + ", " + i );
                 crudInterface.createTileInstance(tileClasses.get(repeater % noOfClasses), new PointImpl(j, i));
             }
         }

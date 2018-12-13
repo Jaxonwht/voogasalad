@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game>
-    <name>
-        Goblin and Trolls
-    </name>
-    <info>
-        A fighting game between two monsters!
-    </info>
-    <reference>
-        src/engine/goblins_and_trolls/goblin_sword_game.xml
-    </reference>
-    <color>
-        Black
-    </color>
-    <displaygraphic>
-        GoblinAndTroll-background.jpg
-    </displaygraphic>
-    <tags>
-        Strategy Fighting StickFigures
-        Grid
-    </tags>
+<name>
+    Goblin and Trolls
+</name>
+<info>
+    A fighting game between two monsters!
+</info>
+<reference>
+    src/engine/goblins_and_trolls/goblin_sword_game.xml
+</reference>
+<color>
+    Black
+</color>
+<displaygraphic>
+    GoblinAndTroll-background.jpg
+</displaygraphic>
+<tags>
+    Strategy Fighting StickFigures
+    Grid
+</tags>
 </game>

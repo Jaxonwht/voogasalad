@@ -26,7 +26,10 @@ import javafx.stage.Stage;
 import runningGame.GameWindow;
 import utils.ErrorWindow;
 
+import java.awt.*;
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.function.BiConsumer;
 
 import static authoringInterface.MainAuthoringProgram.SCREEN_HEIGHT;
@@ -74,7 +77,7 @@ public class EditorMenuBarView implements SubView<MenuBar> {
         menuBar = new MenuBar();
         menuBar.setPrefHeight(View.MENU_BAR_HEIGHT);
 
-        if(gameObjectManager.getBGMpath() == null) soundView = new SoundView();
+        if (gameObjectManager.getBGMpath() == null) soundView = new SoundView();
         else soundView = new SoundView(gameObjectManager.getBGMpath());
 
         Menu file = new Menu("File");
@@ -108,9 +111,13 @@ public class EditorMenuBarView implements SubView<MenuBar> {
         saveAs.setOnAction(this::handleSaveAs);
         close.setOnAction(e -> new CloseFileView(closeWindow));
         runProject.setOnAction(this::handleRunProject);
-        resizeGrid.setOnAction(e -> new ResizeGridView(editView.getGridView().getGridDimension()).showAndWait().ifPresent(dimension ->
-                updateGridDimension.accept(dimension.getKey(), dimension.getValue())
-        ));
+        resizeGrid.setOnAction(e -> new ResizeGridView(editView.getGridView().getGridDimension()).showAndWait().ifPresent(
+                dimension -> {
+                    updateGridDimension.accept(dimension.getKey(), dimension.getValue());
+                    editView.updateDimension(dimension.getKey(), dimension.getValue());
+                }
+                )
+        );
         setBGM.setOnAction(e -> {
             var path = soundView.showAndWait();
             gameObjectManager.setBGMpath(path);
@@ -230,8 +237,14 @@ public class EditorMenuBarView implements SubView<MenuBar> {
         }
     }
 
-
     void handleHelpDoc(ActionEvent event) {
+        try {
+            Desktop.getDesktop().browse(new URL("https://hackmd.io/s/HJDq6Z0JN").toURI());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

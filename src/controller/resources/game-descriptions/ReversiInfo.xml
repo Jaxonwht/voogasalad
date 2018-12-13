@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game>
+    <name>
+        Reversi
+    </name>
+    <info>
+        A strategy game where opponents takes turn flipping discs on the board.
+    </info>
+    <reference>
+        src/engine/reversi/reversi.xml
+    </reference>
+    <color>
+        Black
+    </color>
+    <displaygraphic>
+        reversi_background.jpeg
+    </displaygraphic>
+    <tags>
+        Strategy Grid
+    </tags>
+</game>

@@ -44,11 +44,7 @@ GameMethods.endGame(&quot;Player B won!&quot;)
 </winCondition>
   <grid-width>6</grid-width>
   <grid-height>7</grid-height>
-  <bgmPath>../../../../src/engine/goblins_and_trolls/bgm.128.mp3</bgmPath>
-  <gamePlay.CategoryPrototype>
-    <name>PLAYER</name>
-    <myID>4</myID>
-  </gamePlay.CategoryPrototype>
+  <bgmPath>../../../../src/engine/connect4/connect4_bgm.mp3</bgmPath>
   <gamePlay.CategoryPrototype>
     <name>Game Objects</name>
     <myID>1</myID>
@@ -56,6 +52,10 @@ GameMethods.endGame(&quot;Player B won!&quot;)
   <gamePlay.CategoryPrototype>
     <name>ENTITY</name>
     <myID>2</myID>
+  </gamePlay.CategoryPrototype>
+  <gamePlay.CategoryPrototype>
+    <name>PLAYER</name>
+    <myID>4</myID>
   </gamePlay.CategoryPrototype>
   <gamePlay.CategoryPrototype>
     <name>TILE</name>
@@ -93,6 +93,38 @@ GameMethods.endGame(&quot;Player B won!&quot;)
     <myImageSelector>GameMethods.$return(0)</myImageSelector>
   </gameplay.TilePrototype>
   <gameplay.Tile>
+    <myID>25</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>28</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
     <myID>8</myID>
     <name>gridcell</name>
     <instanceName>gridcell</instanceName>
@@ -109,7 +141,39 @@ GameMethods.endGame(&quot;Player B won!&quot;)
     <myImageSelector>GameMethods.$return(0)</myImageSelector>
   </gameplay.Tile>
   <gameplay.Tile>
-    <myID>13</myID>
+    <myID>15</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>17</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>36</myID>
     <name>gridcell</name>
     <instanceName>gridcell</instanceName>
     <props/>
@@ -117,7 +181,7 @@ GameMethods.endGame(&quot;Player B won!&quot;)
     <myHeight>1</myHeight>
     <myCoord>
       <x>5</x>
-      <y>2</y>
+      <y>5</y>
     </myCoord>
     <myImagePaths>
       <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
@@ -141,6 +205,38 @@ GameMethods.endGame(&quot;Player B won!&quot;)
     <myImageSelector>GameMethods.$return(0)</myImageSelector>
   </gameplay.Tile>
   <gameplay.Tile>
+    <myID>43</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>32</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
     <myID>34</myID>
     <name>gridcell</name>
     <instanceName>gridcell</instanceName>
@@ -157,23 +253,7 @@ GameMethods.endGame(&quot;Player B won!&quot;)
     <myImageSelector>GameMethods.$return(0)</myImageSelector>
   </gameplay.Tile>
   <gameplay.Tile>
-    <myID>38</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>4</x>
-      <y>6</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>12</myID>
+    <myID>1</myID>
     <name>gridcell</name>
     <instanceName>gridcell</instanceName>
     <props/>
@@ -181,7 +261,119 @@ GameMethods.endGame(&quot;Player B won!&quot;)
     <myHeight>1</myHeight>
     <myCoord>
       <x>5</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>35</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>10</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
       <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>7</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>9</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>3</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>2</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>27</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>4</y>
     </myCoord>
     <myImagePaths>
       <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
@@ -221,23 +413,7 @@ GameMethods.endGame(&quot;Player B won!&quot;)
     <myImageSelector>GameMethods.$return(0)</myImageSelector>
   </gameplay.Tile>
   <gameplay.Tile>
-    <myID>24</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>5</x>
-      <y>3</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>2</myID>
+    <myID>38</myID>
     <name>gridcell</name>
     <instanceName>gridcell</instanceName>
     <props/>
@@ -245,439 +421,7 @@ GameMethods.endGame(&quot;Player B won!&quot;)
     <myHeight>1</myHeight>
     <myCoord>
       <x>4</x>
-      <y>0</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>4</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>2</x>
-      <y>0</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>1</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>5</x>
-      <y>0</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>5</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>1</x>
-      <y>0</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>15</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>3</x>
-      <y>2</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>22</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>3</x>
-      <y>3</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>33</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>2</x>
-      <y>5</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>21</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>2</x>
-      <y>3</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>31</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>0</x>
-      <y>5</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>17</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>1</x>
-      <y>2</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>10</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>3</x>
-      <y>1</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>43</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>0</x>
       <y>6</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>14</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>4</x>
-      <y>2</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>20</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>1</x>
-      <y>3</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>28</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>2</x>
-      <y>4</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>36</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>5</x>
-      <y>5</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>18</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>0</x>
-      <y>2</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>3</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>3</x>
-      <y>0</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>7</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>0</x>
-      <y>1</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>41</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>1</x>
-      <y>6</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>35</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>4</x>
-      <y>5</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>40</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>2</x>
-      <y>6</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>9</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>2</x>
-      <y>1</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>25</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>5</x>
-      <y>4</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>30</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>0</x>
-      <y>4</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>23</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>4</x>
-      <y>3</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>19</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>0</x>
-      <y>3</y>
-    </myCoord>
-    <myImagePaths>
-      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
-    </myImagePaths>
-    <myImageSelector>GameMethods.$return(0)</myImageSelector>
-  </gameplay.Tile>
-  <gameplay.Tile>
-    <myID>27</myID>
-    <name>gridcell</name>
-    <instanceName>gridcell</instanceName>
-    <props/>
-    <myWidth>1</myWidth>
-    <myHeight>1</myHeight>
-    <myCoord>
-      <x>3</x>
-      <y>4</y>
     </myCoord>
     <myImagePaths>
       <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
@@ -701,6 +445,38 @@ GameMethods.endGame(&quot;Player B won!&quot;)
     <myImageSelector>GameMethods.$return(0)</myImageSelector>
   </gameplay.Tile>
   <gameplay.Tile>
+    <myID>24</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>26</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
     <myID>16</myID>
     <name>gridcell</name>
     <instanceName>gridcell</instanceName>
@@ -709,6 +485,214 @@ GameMethods.endGame(&quot;Player B won!&quot;)
     <myHeight>1</myHeight>
     <myCoord>
       <x>2</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>4</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>18</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>40</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>13</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>33</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>41</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>20</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>5</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>31</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>19</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>30</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>12</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>14</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
       <y>2</y>
     </myCoord>
     <myImagePaths>
@@ -733,15 +717,15 @@ GameMethods.endGame(&quot;Player B won!&quot;)
     <myImageSelector>GameMethods.$return(0)</myImageSelector>
   </gameplay.Tile>
   <gameplay.Tile>
-    <myID>26</myID>
+    <myID>22</myID>
     <name>gridcell</name>
     <instanceName>gridcell</instanceName>
     <props/>
     <myWidth>1</myWidth>
     <myHeight>1</myHeight>
     <myCoord>
-      <x>4</x>
-      <y>4</y>
+      <x>3</x>
+      <y>3</y>
     </myCoord>
     <myImagePaths>
       <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
@@ -749,15 +733,31 @@ GameMethods.endGame(&quot;Player B won!&quot;)
     <myImageSelector>GameMethods.$return(0)</myImageSelector>
   </gameplay.Tile>
   <gameplay.Tile>
-    <myID>32</myID>
+    <myID>21</myID>
     <name>gridcell</name>
     <instanceName>gridcell</instanceName>
     <props/>
     <myWidth>1</myWidth>
     <myHeight>1</myHeight>
     <myCoord>
-      <x>1</x>
-      <y>5</y>
+      <x>2</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>23</myID>
+    <name>gridcell</name>
+    <instanceName>gridcell</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>3</y>
     </myCoord>
     <myImagePaths>
       <string>../../../../src/engine/goblins_and_trolls/grass_1.png</string>

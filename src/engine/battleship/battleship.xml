@@ -1,0 +1,6034 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game>
+  <gameplay.Node>
+    <myPhaseName>turn_start</myPhaseName>
+    <myName>c</myName>
+    <myExecution>GameMethods.setProperty($clicked,&quot;hp&quot;,((GameMethods.getProperty($clicked,&quot;hp&quot;)) - (GameMethods.getProperty(selected,&quot;attack&quot;))));
+if(((GameMethods.getProperty($clicked,&quot;hp&quot;)) &lt;= (0))) {
+GameMethods.removeEntity($clicked);
+if(((GameMethods.getName(selected)) == (&quot;missile&quot;))) {
+GameMethods.removeEntity(selected)
+}
+
+}
+GameMethods.toNextPlayer();
+GameMethods.$goto(&quot;turn_start&quot;)</myExecution>
+  </gameplay.Node>
+  <gameplay.Node>
+    <myPhaseName>turn_start</myPhaseName>
+    <myName>b</myName>
+    <myExecution>selected = $clicked
+</myExecution>
+  </gameplay.Node>
+  <gameplay.Node>
+    <myPhaseName>turn_start</myPhaseName>
+    <myName>d</myName>
+    <myExecution>GameMethods.moveEntity(selected,$clicked);
+GameMethods.toNextPlayer();
+GameMethods.$goto(&quot;turn_start&quot;)</myExecution>
+  </gameplay.Node>
+  <gameplay.Node>
+    <myPhaseName>turn_start</myPhaseName>
+    <myName>turn_start</myName>
+    <myExecution></myExecution>
+  </gameplay.Node>
+  <gameplay.Edge>
+    <myPhaseName>turn_start</myPhaseName>
+    <myStartNodeName>turn_start</myStartNodeName>
+    <myEndNodeName>b</myEndNodeName>
+    <myTrigger class="phase.api.GameEvent$MouseClick"/>
+    <myGuard>GameMethods.$return(((GameMethods.isEntity($clicked)) &amp;&amp; (GameMethods.isEntityOf(GameMethods.getCurrentPlayerName(),$clicked))))</myGuard>
+  </gameplay.Edge>
+  <gameplay.Edge>
+    <myPhaseName>turn_start</myPhaseName>
+    <myStartNodeName>b</myStartNodeName>
+    <myEndNodeName>d</myEndNodeName>
+    <myTrigger class="phase.api.GameEvent$MouseClick"/>
+    <myGuard>GameMethods.$return(((((GameMethods.isTile($clicked)) &amp;&amp; (GameMethods.hasNoIntersectingEntities($clicked)))) &amp;&amp; (((((GameMethods.getName($clicked)) != (&quot;land&quot;))) &amp;&amp; (((GameMethods.distance(selected,$clicked)) &lt;= (GameMethods.getProperty(selected,&quot;move_range&quot;))))))))</myGuard>
+  </gameplay.Edge>
+  <gameplay.Edge>
+    <myPhaseName>turn_start</myPhaseName>
+    <myStartNodeName>b</myStartNodeName>
+    <myEndNodeName>turn_start</myEndNodeName>
+    <myTrigger class="phase.api.GameEvent$KeyPress">
+      <code>ESCAPE</code>
+    </myTrigger>
+    <myGuard>GameMethods.$return(true)</myGuard>
+  </gameplay.Edge>
+  <gameplay.Edge>
+    <myPhaseName>turn_start</myPhaseName>
+    <myStartNodeName>b</myStartNodeName>
+    <myEndNodeName>c</myEndNodeName>
+    <myTrigger class="phase.api.GameEvent$MouseClick"/>
+    <myGuard>GameMethods.$return(((((((GameMethods.isEntity($clicked)) &amp;&amp; (GameMethods.isEntityOf(GameMethods.getNextPlayerName(),$clicked)))) &amp;&amp; (((GameMethods.distance($clicked,selected)) &lt;= (GameMethods.getProperty(selected,&quot;attack_range&quot;)))))) &amp;&amp; (((GameMethods.getName($clicked)) != (&quot;missile&quot;)))))</myGuard>
+  </gameplay.Edge>
+  <gameplay.Phase>
+    <myStartNodeName>turn_start</myStartNodeName>
+    <myCurrentNodeName>turn_start</myCurrentNodeName>
+    <myNodeNames>
+      <string>c</string>
+      <string>b</string>
+      <string>d</string>
+      <string>turn_start</string>
+    </myNodeNames>
+  </gameplay.Phase>
+  <gameplay.Node>
+    <myPhaseName>select_entity</myPhaseName>
+    <myName>select_entity</myName>
+    <myExecution></myExecution>
+  </gameplay.Node>
+  <gameplay.Phase>
+    <myStartNodeName>select_entity</myStartNodeName>
+    <myCurrentNodeName>select_entity</myCurrentNodeName>
+    <myNodeNames>
+      <string>select_entity</string>
+    </myNodeNames>
+  </gameplay.Phase>
+  <winCondition>if(((GameMethods.hasNoEntities(&quot;A&quot;)) &amp;&amp; (((GameMethods.numberOfInstances(&quot;carrier&quot;)) == (0))))) {
+GameMethods.endGame(&quot;Player B won!&quot;)
+}
+if(GameMethods.hasNoEntities(&quot;B&quot;)) {
+&quot;Player A won!&quot;
+}
+</winCondition>
+  <grid-width>15</grid-width>
+  <grid-height>15</grid-height>
+  <bgmPath>../../../../../../CS 308/voogasalad_printstacktrace/src/engine/battleship/Epic-battle-music-grzegorz-majcherczyk-heroica.mp3</bgmPath>
+  <gamePlay.CategoryPrototype>
+    <name>Game Objects</name>
+    <myID>1</myID>
+  </gamePlay.CategoryPrototype>
+  <gamePlay.CategoryPrototype>
+    <name>ENTITY</name>
+    <myID>2</myID>
+  </gamePlay.CategoryPrototype>
+  <gamePlay.CategoryPrototype>
+    <name>TILE</name>
+    <myID>3</myID>
+  </gamePlay.CategoryPrototype>
+  <gamePlay.CategoryPrototype>
+    <name>PLAYER</name>
+    <myID>4</myID>
+  </gamePlay.CategoryPrototype>
+  <gameplay.EntityPrototype>
+    <name>missile</name>
+    <props>
+      <entry>
+        <string>attack_range</string>
+        <int>10000</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>30</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>0</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/missile.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.EntityPrototype>
+  <gameplay.EntityPrototype>
+    <name>littleship</name>
+    <props>
+      <entry>
+        <string>attack_range</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>1</int>
+      </entry>
+      <entry>
+        <string>hp</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>5</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/battleship-1.png</string>
+      <string>../../../../src/engine/battleship/battleship-2.png</string>
+      <string>../../../../src/engine/battleship/battleship-3.png</string>
+      <string>../../../../src/engine/battleship/battleship-4.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.EntityPrototype>
+  <gameplay.EntityPrototype>
+    <name>carrier</name>
+    <props>
+      <entry>
+        <string>attack_range</string>
+        <int>10</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>3</int>
+      </entry>
+      <entry>
+        <string>hp</string>
+        <int>6</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>4</int>
+      </entry>
+    </props>
+    <myWidth>2</myWidth>
+    <myHeight>2</myHeight>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/carrier-1.png</string>
+      <string>../../../../src/engine/battleship/carrier-2.png</string>
+      <string>../../../../src/engine/battleship/carrier-3.png</string>
+      <string>../../../../src/engine/battleship/carrier-4.png</string>
+      <string>../../../../src/engine/battleship/carrier-5.png</string>
+      <string>../../../../src/engine/battleship/carrier-6.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.EntityPrototype>
+  <gameplay.Entity>
+    <myID>242</myID>
+    <name>carrier</name>
+    <instanceName>carrier</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>6</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>10</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>3</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>4</int>
+      </entry>
+    </props>
+    <myWidth>2</myWidth>
+    <myHeight>2</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/carrier-1.png</string>
+      <string>../../../../src/engine/battleship/carrier-2.png</string>
+      <string>../../../../src/engine/battleship/carrier-3.png</string>
+      <string>../../../../src/engine/battleship/carrier-4.png</string>
+      <string>../../../../src/engine/battleship/carrier-5.png</string>
+      <string>../../../../src/engine/battleship/carrier-6.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>231</myID>
+    <name>carrier</name>
+    <instanceName>carrier</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>6</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>10</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>3</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>4</int>
+      </entry>
+    </props>
+    <myWidth>2</myWidth>
+    <myHeight>2</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/carrier-1.png</string>
+      <string>../../../../src/engine/battleship/carrier-2.png</string>
+      <string>../../../../src/engine/battleship/carrier-3.png</string>
+      <string>../../../../src/engine/battleship/carrier-4.png</string>
+      <string>../../../../src/engine/battleship/carrier-5.png</string>
+      <string>../../../../src/engine/battleship/carrier-6.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>227</myID>
+    <name>littleship</name>
+    <instanceName>littleship</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>5</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>1</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/battleship-1.png</string>
+      <string>../../../../src/engine/battleship/battleship-2.png</string>
+      <string>../../../../src/engine/battleship/battleship-3.png</string>
+      <string>../../../../src/engine/battleship/battleship-4.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>234</myID>
+    <name>carrier</name>
+    <instanceName>carrier</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>6</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>10</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>3</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>4</int>
+      </entry>
+    </props>
+    <myWidth>2</myWidth>
+    <myHeight>2</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/carrier-1.png</string>
+      <string>../../../../src/engine/battleship/carrier-2.png</string>
+      <string>../../../../src/engine/battleship/carrier-3.png</string>
+      <string>../../../../src/engine/battleship/carrier-4.png</string>
+      <string>../../../../src/engine/battleship/carrier-5.png</string>
+      <string>../../../../src/engine/battleship/carrier-6.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>237</myID>
+    <name>littleship</name>
+    <instanceName>littleship</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>1</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>5</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/battleship-1.png</string>
+      <string>../../../../src/engine/battleship/battleship-2.png</string>
+      <string>../../../../src/engine/battleship/battleship-3.png</string>
+      <string>../../../../src/engine/battleship/battleship-4.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>239</myID>
+    <name>littleship</name>
+    <instanceName>littleship</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>1</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>5</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/battleship-1.png</string>
+      <string>../../../../src/engine/battleship/battleship-2.png</string>
+      <string>../../../../src/engine/battleship/battleship-3.png</string>
+      <string>../../../../src/engine/battleship/battleship-4.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>240</myID>
+    <name>littleship</name>
+    <instanceName>littleship</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>1</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>5</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/battleship-1.png</string>
+      <string>../../../../src/engine/battleship/battleship-2.png</string>
+      <string>../../../../src/engine/battleship/battleship-3.png</string>
+      <string>../../../../src/engine/battleship/battleship-4.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>238</myID>
+    <name>littleship</name>
+    <instanceName>littleship</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>1</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>5</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/battleship-1.png</string>
+      <string>../../../../src/engine/battleship/battleship-2.png</string>
+      <string>../../../../src/engine/battleship/battleship-3.png</string>
+      <string>../../../../src/engine/battleship/battleship-4.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>230</myID>
+    <name>missile</name>
+    <instanceName>missile</instanceName>
+    <props>
+      <entry>
+        <string>attack_range</string>
+        <int>10000</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>30</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>0</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/missile.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>236</myID>
+    <name>littleship</name>
+    <instanceName>littleship</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>5</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>1</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/battleship-1.png</string>
+      <string>../../../../src/engine/battleship/battleship-2.png</string>
+      <string>../../../../src/engine/battleship/battleship-3.png</string>
+      <string>../../../../src/engine/battleship/battleship-4.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>232</myID>
+    <name>missile</name>
+    <instanceName>missile</instanceName>
+    <props>
+      <entry>
+        <string>attack_range</string>
+        <int>10000</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>30</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>0</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/missile.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>228</myID>
+    <name>littleship</name>
+    <instanceName>littleship</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>5</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>1</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/battleship-1.png</string>
+      <string>../../../../src/engine/battleship/battleship-2.png</string>
+      <string>../../../../src/engine/battleship/battleship-3.png</string>
+      <string>../../../../src/engine/battleship/battleship-4.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>233</myID>
+    <name>carrier</name>
+    <instanceName>carrier</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>6</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>10</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>3</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>4</int>
+      </entry>
+    </props>
+    <myWidth>2</myWidth>
+    <myHeight>2</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/carrier-1.png</string>
+      <string>../../../../src/engine/battleship/carrier-2.png</string>
+      <string>../../../../src/engine/battleship/carrier-3.png</string>
+      <string>../../../../src/engine/battleship/carrier-4.png</string>
+      <string>../../../../src/engine/battleship/carrier-5.png</string>
+      <string>../../../../src/engine/battleship/carrier-6.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>241</myID>
+    <name>carrier</name>
+    <instanceName>carrier</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>6</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>10</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>3</int>
+      </entry>
+    </props>
+    <myWidth>2</myWidth>
+    <myHeight>2</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/carrier-1.png</string>
+      <string>../../../../src/engine/battleship/carrier-2.png</string>
+      <string>../../../../src/engine/battleship/carrier-3.png</string>
+      <string>../../../../src/engine/battleship/carrier-4.png</string>
+      <string>../../../../src/engine/battleship/carrier-5.png</string>
+      <string>../../../../src/engine/battleship/carrier-6.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>235</myID>
+    <name>littleship</name>
+    <instanceName>littleship</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>5</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>1</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/battleship-1.png</string>
+      <string>../../../../src/engine/battleship/battleship-2.png</string>
+      <string>../../../../src/engine/battleship/battleship-3.png</string>
+      <string>../../../../src/engine/battleship/battleship-4.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>229</myID>
+    <name>littleship</name>
+    <instanceName>littleship</instanceName>
+    <props>
+      <entry>
+        <string>hp</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>attack_range</string>
+        <int>4</int>
+      </entry>
+      <entry>
+        <string>move_range</string>
+        <int>5</int>
+      </entry>
+      <entry>
+        <string>attack</string>
+        <int>1</int>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/battleship-1.png</string>
+      <string>../../../../src/engine/battleship/battleship-2.png</string>
+      <string>../../../../src/engine/battleship/battleship-3.png</string>
+      <string>../../../../src/engine/battleship/battleship-4.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(((GameMethods.getProperty(GameMethods.$this(),&quot;hp&quot;)) - (1)))</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.TilePrototype>
+    <myID>11</myID>
+    <name>land</name>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/grasswreck.jpg</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.TilePrototype>
+  <gameplay.TilePrototype>
+    <myID>7</myID>
+    <name>sea</name>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.TilePrototype>
+  <gameplay.Tile>
+    <myID>185</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>173</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>23</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>163</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>97</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>40</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>129</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>211</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>171</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>205</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>113</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>66</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>144</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>167</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>209</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>103</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>212</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>95</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>141</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>62</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>69</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>123</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>52</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>174</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>159</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>191</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>182</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>105</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>219</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>188</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>70</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>64</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>43</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>140</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>168</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>15</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>202</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>176</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>214</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>215</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>37</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>139</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>151</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>203</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>193</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>165</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>150</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>56</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>148</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>88</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>134</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>106</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>169</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>1</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>152</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>68</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>226</myID>
+    <name>land</name>
+    <instanceName>land</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/grasswreck.jpg</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>223</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>19</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>82</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>81</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>187</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>16</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>58</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>116</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>31</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>99</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>122</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>59</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>79</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>217</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>102</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>28</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>221</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>145</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>183</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>156</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>25</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>42</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>85</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>114</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>137</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>200</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>198</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>136</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>195</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>218</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>100</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>119</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>72</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>177</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>98</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>143</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>46</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>61</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>213</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>17</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>26</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>164</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>75</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>181</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>51</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>48</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>104</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>6</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>27</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>170</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>60</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>20</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>35</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>126</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>197</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>71</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>36</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>34</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>186</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>12</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>39</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>147</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>121</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>132</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>135</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>21</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>112</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>157</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>207</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>73</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>160</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>204</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>38</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>76</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>149</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>184</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>153</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>111</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>55</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>77</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>161</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>208</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>92</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>180</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>49</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>133</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>206</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>33</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>2</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>11</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>41</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>63</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>3</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>189</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>18</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>67</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>89</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>65</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>146</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>78</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>101</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>84</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>115</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>179</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>222</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>54</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>74</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>155</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>110</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>4</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>120</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>44</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>154</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>192</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>124</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>96</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>108</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>196</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>53</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>7</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>87</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>9</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>50</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>172</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>130</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>131</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>118</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>86</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>14</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>13</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>94</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>107</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>201</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>91</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>117</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>8</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>158</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>5</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>10</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>142</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>10</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>175</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>6</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>166</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>225</myID>
+    <name>land</name>
+    <instanceName>land</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/grasswreck.jpg</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>127</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>47</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>162</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>11</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>57</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>178</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>12</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>220</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>13</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>190</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>93</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>128</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>216</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>8</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>199</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>210</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>14</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>29</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>224</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>14</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>32</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>45</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>24</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>109</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>10</x>
+      <y>7</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>138</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>9</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>194</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>11</x>
+      <y>13</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>22</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>7</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>30</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>83</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>125</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>12</x>
+      <y>8</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>90</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>5</x>
+      <y>6</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>80</myID>
+    <name>sea</name>
+    <instanceName>sea</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>9</x>
+      <y>5</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/battleship/sea.jpg</string>
+      <string>../../../../src/engine/battleship/seawrech.jpg</string>
+    </myImagePaths>
+    <myImageSelector>if(((GameMethods.getProperty(GameMethods.$this(),&quot;dead&quot;)) &lt; (2))) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Player>
+    <myName>A</myName>
+    <myStats/>
+    <myEntityIDs>
+      <int>227</int>
+      <int>228</int>
+      <int>229</int>
+      <int>230</int>
+      <int>231</int>
+      <int>232</int>
+      <int>233</int>
+      <int>234</int>
+      <int>235</int>
+      <int>236</int>
+      <int>237</int>
+      <int>238</int>
+      <int>239</int>
+      <int>240</int>
+      <int>241</int>
+      <int>242</int>
+    </myEntityIDs>
+  </gameplay.Player>
+  <gameplay.Player>
+    <myName>B</myName>
+    <myStats/>
+    <myEntityIDs>
+      <int>227</int>
+      <int>228</int>
+      <int>229</int>
+      <int>230</int>
+      <int>231</int>
+      <int>232</int>
+      <int>233</int>
+      <int>234</int>
+      <int>235</int>
+      <int>236</int>
+      <int>237</int>
+      <int>238</int>
+      <int>239</int>
+      <int>240</int>
+      <int>241</int>
+      <int>242</int>
+    </myEntityIDs>
+  </gameplay.Player>
+  <gameplay.Turn>
+    <myCurrentPhaseName>turn_start</myCurrentPhaseName>
+    <playersOrder>
+      <string>A</string>
+      <string>B</string>
+    </playersOrder>
+  </gameplay.Turn>
+</game>

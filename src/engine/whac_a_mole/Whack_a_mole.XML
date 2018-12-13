@@ -1,0 +1,1102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game>
+  <gameplay.Node>
+    <myPhaseName>a</myPhaseName>
+    <myName>whack</myName>
+    <myExecution>GameMethods.setProperty($clicked,&quot;isOutside&quot;,false);
+GameMethods.createEntity(&quot;dead_mole&quot;,GameMethods.getEmptyTileBelow(GameMethods.getTileAt(4.0,0.0)),&quot;A&quot;);
+GameMethods.$goto(&quot;a&quot;)</myExecution>
+  </gameplay.Node>
+  <gameplay.Node>
+    <myPhaseName>a</myPhaseName>
+    <myName>a</myName>
+    <myExecution>(((0) .. (1))).each({i -&gt;
+GameMethods.setProperty(GameMethods.getEntityOver(GameMethods.getTileAt(GameMethods.randInt(4),GameMethods.randInt(5))),&quot;isOutside&quot;,true)
+})
+</myExecution>
+  </gameplay.Node>
+  <gameplay.Edge>
+    <myPhaseName>a</myPhaseName>
+    <myStartNodeName>a</myStartNodeName>
+    <myEndNodeName>whack</myEndNodeName>
+    <myTrigger class="phase.api.GameEvent$MouseClick"/>
+    <myGuard>GameMethods.$return(((((GameMethods.isEntity($clicked)) &amp;&amp; (((GameMethods.getX($clicked)) &lt; (4))))) &amp;&amp; (GameMethods.getProperty($clicked,&quot;isOutside&quot;))))</myGuard>
+  </gameplay.Edge>
+  <gameplay.Phase>
+    <myStartNodeName>a</myStartNodeName>
+    <myCurrentNodeName>a</myCurrentNodeName>
+    <myNodeNames>
+      <string>whack</string>
+      <string>a</string>
+    </myNodeNames>
+  </gameplay.Phase>
+  <winCondition>if(GameMethods.isNull(GameMethods.getEmptyTileBelow(GameMethods.getTileAt(4,0)))) {
+GameMethods.endGame(&quot;You win!&quot;)
+}
+</winCondition>
+  <grid-width>5</grid-width>
+  <grid-height>5</grid-height>
+  <bgmPath>../../../../src/engine/whac_a_mole/whac_a_mole_bgm.128.mp3</bgmPath>
+  <gamePlay.CategoryPrototype>
+    <name>Game Objects</name>
+    <myID>1</myID>
+  </gamePlay.CategoryPrototype>
+  <gamePlay.CategoryPrototype>
+    <name>ENTITY</name>
+    <myID>2</myID>
+  </gamePlay.CategoryPrototype>
+  <gamePlay.CategoryPrototype>
+    <name>PLAYER</name>
+    <myID>4</myID>
+  </gamePlay.CategoryPrototype>
+  <gamePlay.CategoryPrototype>
+    <name>TILE</name>
+    <myID>3</myID>
+  </gamePlay.CategoryPrototype>
+  <gameplay.EntityPrototype>
+    <name>mole</name>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.EntityPrototype>
+  <gameplay.EntityPrototype>
+    <name>dead_mole</name>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/dead_mole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.EntityPrototype>
+  <gameplay.Entity>
+    <myID>40</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>49</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>29</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>31</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>33</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>42</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>39</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>30</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>41</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>27</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>51</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>37</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>32</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>43</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>44</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>47</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>28</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>38</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>34</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.Entity>
+    <myID>48</myID>
+    <name>mole</name>
+    <instanceName>mole</instanceName>
+    <props>
+      <entry>
+        <string>isOutside</string>
+        <boolean>false</boolean>
+      </entry>
+    </props>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/mole.png</string>
+      <string>../../../../src/engine/whac_a_mole/mole_hiding.png</string>
+    </myImagePaths>
+    <myImageSelector>if(GameMethods.getProperty(GameMethods.$this(),&quot;isOutside&quot;)) {
+GameMethods.$return(0)
+}
+else {
+GameMethods.$return(1)
+}
+</myImageSelector>
+  </gameplay.Entity>
+  <gameplay.TilePrototype>
+    <myID>6</myID>
+    <name>sidebar</name>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/sidebar.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.TilePrototype>
+  <gameplay.TilePrototype>
+    <myID>7</myID>
+    <name>hole</name>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.TilePrototype>
+  <gameplay.Tile>
+    <myID>3</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>15</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>16</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>21</myID>
+    <name>sidebar</name>
+    <instanceName>sidebar</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/sidebar.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>12</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>13</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>10</myID>
+    <name>sidebar</name>
+    <instanceName>sidebar</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/sidebar.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>9</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>14</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>22</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>23</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>24</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>1</myID>
+    <name>sidebar</name>
+    <instanceName>sidebar</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/sidebar.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>5</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>19</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>26</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>4</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>20</myID>
+    <name>sidebar</name>
+    <instanceName>sidebar</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/sidebar.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>7</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>18</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>6</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>0</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>11</myID>
+    <name>sidebar</name>
+    <instanceName>sidebar</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>4</x>
+      <y>2</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/sidebar.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>17</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>3</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>2</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>3</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>4</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>1</x>
+      <y>0</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Tile>
+    <myID>8</myID>
+    <name>hole</name>
+    <instanceName>hole</instanceName>
+    <props/>
+    <myWidth>1</myWidth>
+    <myHeight>1</myHeight>
+    <myCoord>
+      <x>2</x>
+      <y>1</y>
+    </myCoord>
+    <myImagePaths>
+      <string>../../../../src/engine/whac_a_mole/hole.png</string>
+    </myImagePaths>
+    <myImageSelector>GameMethods.$return(0)</myImageSelector>
+  </gameplay.Tile>
+  <gameplay.Player>
+    <myName>A</myName>
+    <myStats/>
+    <myEntityIDs>
+      <int>27</int>
+      <int>28</int>
+      <int>29</int>
+      <int>30</int>
+      <int>31</int>
+      <int>32</int>
+      <int>33</int>
+      <int>34</int>
+      <int>37</int>
+      <int>38</int>
+      <int>39</int>
+      <int>40</int>
+      <int>41</int>
+      <int>42</int>
+      <int>43</int>
+      <int>44</int>
+      <int>47</int>
+      <int>48</int>
+      <int>49</int>
+      <int>51</int>
+    </myEntityIDs>
+  </gameplay.Player>
+  <gameplay.Turn>
+    <myCurrentPhaseName>a</myCurrentPhaseName>
+    <playersOrder>
+      <string>A</string>
+    </playersOrder>
+  </gameplay.Turn>
+</game>

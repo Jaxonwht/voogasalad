@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game>
+    <name>
+        Connect 4
+    </name>
+    <info>
+        A strategy game that is a race to the first one to get 4 in a row!
+    </info>
+    <reference>
+        src/engine/connect4/Connect4.xml
+    </reference>
+    <color>
+        Black
+    </color>
+    <displaygraphic>
+        connect4_background.jpeg
+    </displaygraphic>
+    <tags>
+        Strategy Guessing Grid
+    </tags>
+</game>

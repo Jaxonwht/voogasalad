@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game>
+    <gameplay.Phase>
+        <myStartNodeName>a</myStartNodeName>
+        <myCurrentNodeName>a</myCurrentNodeName>
+        <myNodeNames>
+            <string>a</string>
+            <string>b</string>
+        </myNodeNames>
+    </gameplay.Phase>
+    <gameplay.Node>
+        <myPhaseName>a</myPhaseName>
+        <myName>a</myName>
+        <myExecution></myExecution>
+    </gameplay.Node>
+    <gameplay.Node>
+        <myPhaseName>a</myPhaseName>
+        <myName>b</myName>
+        <myExecution>
+            turn = GameMethods.getCurrentPlayerName()
+            if(turn.equals("A")) {
+            entityName = "X";
+            }
+            else {
+            entityName = "O";
+            }
+            GameMethods.createEntity(entityName, $clicked, turn);
+            GameMethods.updateViews();
+            GameMethods.toNextPlayer();
+            GameMethods.$goto(&quot;a&quot;)
+        </myExecution>
+    </gameplay.Node>
+    <gameplay.Edge>
+        <myPhaseName>a</myPhaseName>
+        <myStartNodeName>a</myStartNodeName>
+        <myEndNodeName>b</myEndNodeName>
+        <myTrigger class="phase.api.GameEvent$MouseClick"/>
+        <myGuard>if($clicked.getName() == 'Box' &amp;&amp; GameMethods.hasNoEntityAt((int) $clicked.getX(),
+            (int) $clicked.getY())) { $return = true; }
+            else { $return = false; }</myGuard>
+    </gameplay.Edge>
+    <winCondition>
+        turn = GameMethods.getCurrentPlayer();
+        String name = turn.getName().equals("A") ? "B" : "A";
+        String name2 = name.equals("A") ? "B" : "A";
+        turn = GameMethods.getPlayer(name);
+        entities = turn.getMyEntities();
+        def tileSet = [] as HashSet;
+        for (Integer i : entities){ tileSet.add(GameMethods.getTileUnder(GameMethods.getEntity(i)).getID()); }
+        if ((tileSet.contains(1) &amp;&amp; tileSet.contains(2) &amp;&amp; tileSet.contains(3)) ||
+        (tileSet.contains(4) &amp;&amp; tileSet.contains(5) &amp;&amp; tileSet.contains(6)) ||
+        (tileSet.contains(7) &amp;&amp; tileSet.contains(8) &amp;&amp; tileSet.contains(9)) ||
+        (tileSet.contains(1) &amp;&amp; tileSet.contains(4) &amp;&amp; tileSet.contains(7)) ||
+        (tileSet.contains(2) &amp;&amp; tileSet.contains(5) &amp;&amp; tileSet.contains(8)) ||
+        (tileSet.contains(3) &amp;&amp; tileSet.contains(6) &amp;&amp; tileSet.contains(9)) ||
+        (tileSet.contains(1) &amp;&amp; tileSet.contains(5) &amp;&amp; tileSet.contains(9)) ||
+        (tileSet.contains(3) &amp;&amp; tileSet.contains(5) &amp;&amp; tileSet.contains(7))) {
+        GameMethods.endGame(String.format("%s wins!", turn.getName()));
+        return;
+        }
+        if (turn.getMyEntities().size() == 5 || GameMethods.getPlayer(name2).getMyEntities().size() == 5){
+            GameMethods.endGame("It's a tie!");
+        }
+    </winCondition>
+    <grid-width>3</grid-width>
+    <grid-height>3</grid-height>
+    <bgmPath/>
+    <gameplay.EntityPrototype>
+        <name>X</name>
+        <props/>
+        <myWidth>1</myWidth>
+        <myHeight>1</myHeight>
+        <myImagePaths>
+            <string>../../../../src/engine/tictactoe/x_drawn.png</string>
+        </myImagePaths>
+        <myImageSelector/>
+    </gameplay.EntityPrototype>
+    <gameplay.EntityPrototype>
+        <name>O</name>
+        <props/>
+        <myWidth>1</myWidth>
+        <myHeight>1</myHeight>
+        <myImagePaths>
+            <string>../../../../src/engine/tictactoe/circle_red.png</string>
+        </myImagePaths>
+        <myImageSelector/>
+    </gameplay.EntityPrototype>
+    <gameplay.Tile>
+        <myID>1</myID>
+        <name>Box</name>
+        <instanceName>square</instanceName>
+        <props/>
+        <myWidth>1</myWidth>
+        <myHeight>1</myHeight>
+        <myCoord>
+            <x>0</x>
+            <y>0</y>
+        </myCoord>
+        <myImagePaths>
+            <string>../../../../src/engine/tictactoe/square.png</string>
+        </myImagePaths>
+        <myImageSelector/>
+    </gameplay.Tile>
+    <gameplay.Tile>
+        <myID>2</myID>
+        <name>Box</name>
+        <instanceName>square</instanceName>
+        <props/>
+        <myWidth>1</myWidth>
+        <myHeight>1</myHeight>
+        <myCoord>
+            <x>0</x>
+            <y>1</y>
+        </myCoord>
+        <myImagePaths>
+            <string>../../../../src/engine/tictactoe/square.png</string>
+        </myImagePaths>
+        <myImageSelector/>
+    </gameplay.Tile>
+    <gameplay.Tile>
+        <myID>3</myID>
+        <name>Box</name>
+        <instanceName>square</instanceName>
+        <props/>
+        <myWidth>1</myWidth>
+        <myHeight>1</myHeight>
+        <myCoord>
+            <x>0</x>
+            <y>2</y>
+        </myCoord>
+        <myImagePaths>
+            <string>../../../../src/engine/tictactoe/square.png</string>
+        </myImagePaths>
+        <myImageSelector/>
+    </gameplay.Tile>
+    <gameplay.Tile>
+        <myID>4</myID>
+        <name>Box</name>
+        <instanceName>square</instanceName>
+        <props/>
+        <myWidth>1</myWidth>
+        <myHeight>1</myHeight>
+        <myCoord>
+            <x>1</x>
+            <y>0</y>
+        </myCoord>
+        <myImagePaths>
+            <string>../../../../src/engine/tictactoe/square.png</string>
+        </myImagePaths>
+        <myImageSelector/>
+    </gameplay.Tile>
+    <gameplay.Tile>
+        <myID>5</myID>
+        <name>Box</name>
+        <instanceName>square</instanceName>
+        <props/>
+        <myWidth>1</myWidth>
+        <myHeight>1</myHeight>
+        <myCoord>
+            <x>1</x>
+            <y>1</y>
+        </myCoord>
+        <myImagePaths>
+            <string>../../../../src/engine/tictactoe/square.png</string>
+        </myImagePaths>
+        <myImageSelector/>
+    </gameplay.Tile>
+    <gameplay.Tile>
+        <myID>6</myID>
+        <name>Box</name>
+        <instanceName>square</instanceName>
+        <props/>
+        <myWidth>1</myWidth>
+        <myHeight>1</myHeight>
+        <myCoord>
+            <x>1</x>
+            <y>2</y>
+        </myCoord>
+        <myImagePaths>
+            <string>../../../../src/engine/tictactoe/square.png</string>
+        </myImagePaths>
+        <myImageSelector/>
+    </gameplay.Tile>
+    <gameplay.Tile>
+        <myID>7</myID>
+        <name>Box</name>
+        <instanceName>square</instanceName>
+        <props/>
+        <myWidth>1</myWidth>
+        <myHeight>1</myHeight>
+        <myCoord>
+            <x>2</x>
+            <y>0</y>
+        </myCoord>
+        <myImagePaths>
+            <string>../../../../src/engine/tictactoe/square.png</string>
+        </myImagePaths>
+        <myImageSelector/>
+    </gameplay.Tile>
+    <gameplay.Tile>
+        <myID>8</myID>
+        <name>Box</name>
+        <instanceName>square</instanceName>
+        <props/>
+        <myWidth>1</myWidth>
+        <myHeight>1</myHeight>
+        <myCoord>
+            <x>2</x>
+            <y>1</y>
+        </myCoord>
+        <myImagePaths>
+            <string>../../../../src/engine/tictactoe/square.png</string>
+        </myImagePaths>
+        <myImageSelector/>
+    </gameplay.Tile>
+    <gameplay.Tile>
+        <myID>9</myID>
+        <name>Box</name>
+        <instanceName>square</instanceName>
+        <props/>
+        <myWidth>1</myWidth>
+        <myHeight>1</myHeight>
+        <myCoord>
+            <x>2</x>
+            <y>2</y>
+        </myCoord>
+        <myImagePaths>
+            <string>../../../../src/engine/tictactoe/square.png</string>
+        </myImagePaths>
+        <myImageSelector/>
+    </gameplay.Tile>
+    <gameplay.Player>
+        <myName>B</myName>
+        <myStats/>
+        <myEntityIDs/>
+    </gameplay.Player>
+    <gameplay.Player>
+        <myName>A</myName>
+        <myStats/>
+        <myEntityIDs/>
+    </gameplay.Player>
+    <gameplay.Turn>
+        <myCurrentPhaseName>a</myCurrentPhaseName>
+        <playersOrder>
+            <string>A</string>
+            <string>B</string>
+        </playersOrder>
+    </gameplay.Turn>
+</game>

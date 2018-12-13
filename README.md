@@ -26,12 +26,12 @@ Hours Spent: ~800
 * Authoring Environment
   * **Vincent Liu** : *Frontend developer.* Created basic front-end layout; Created basic graph with drag and drop functionality; Worked on save and load function for phase graph; Enabled tile generation in the front end;
   * **Haotian Wang** : *Frontend developer.* Created the frameworks for front-end and for middle-end integration with back-end. Worked on (de)-serialization, event handling, data passing, convenient features and error handling.
-  * **Amy Kim** : *Frontend developer.* <Add description here>
+  * **Amy Kim** : *Frontend developer.*  Worked on phase pane; Enabled players, properties, sound, grid layout; Worked on GUI and convenient features.
 * Game Engine
   * **Natalie Le** : *Backend engine developer.* Created the engine/gameplay infrastructure and the social center extension.
   * **Jonathan Nakagawa** : *Frontend engine developer.* <Add description here>
 * Authoring Engine
-  * **Inchan Hwang** : *Backend authoring engine developer.* Worked on the Groove part of the authoring engine.
+  * **Inchan Hwang** : *Backend authoring engine developer.* Worked on the Groovy and Phase part of the authoring engine, game engine, save/load/export from authoring engine, overall integration.
   * **Jason Zhou** : *Backend authoring engine developer.* Worked on GameObjectCRUD and various specific game objects such as Entity, Tile and Sound.
   * **Yunhao Qing** : *Backend authoring engine developer.* Worked on GameObjeectCRUD and Player component.
 
@@ -179,8 +179,11 @@ Run the GameLauncher.java to access the game launcher. Click any game's "Play" b
 
 ## Known Bugs
 
+## Unimplemented Features
+
+* Loading player image in the game.
 * Redo and Undo are too difficult with our current framework and we did not manage to finish it before the deadline. However, basic framework (Memento Pattern) is set up in our project
-* If the user try to delete the default player, the player will be deleted on the backend but not the front end. When user click on the front end button, it will give a game object class not found error.
+
 
 ## Design decision
 
@@ -194,7 +197,9 @@ Run the GameLauncher.java to access the game launcher. Click any game's "Play" b
 
 * User has a social center where he or she can see all the games he or she has created.
 
-* `TO BE ADDED`
+* Convenient features; Batch mode and detachable tabs.
+
+* User can save and load the game graphically on the authoring engine; Groovy and Phase nodes are also saved and loaded.
 
 ## Impression
 
@@ -202,7 +207,7 @@ Run the GameLauncher.java to access the game launcher. Click any game's "Play" b
 
 * **Haotian Wang :** I have been working on connecting backend and the UI. I enjoyed the process a lot, it is so fun to see how much changes I made and how flexible our codes become after I re-construct the structure of our project. I feel I understand the 'Open For Extension,Closed for Modification' much more after this project.
 
-* **Amy Kim :** I have been working on the GUI and I really like the experience. Learning how all the UI components work, how the UI components are connected to the back-end and learning how to handle user input were challenging but fun as well. I have also been doing a lot of testing and debugging, it feels great to see how the UI becomes more perfect and beautiful over time.
+* **Amy Kim :** This was a very big project; I had to debug and test a lot for implementing new features, even it was not a complicated feature. I have been working on the GUI and I really like the experience. Learning how all the UI components work, how the UI components are connected to the back-end and learning how to handle user input were challenging but fun as well.
 
 * **Natalie Le :** I had a really great time working on this project. I learned a lot about module dependencies, external libraries, and design patterns like Pub-Sub. My team and I also learned a lot about technical collaboration and best practices for engineering groupwork. It was awesome working with such great teammates!
 
@@ -218,9 +223,9 @@ Run the GameLauncher.java to access the game launcher. Click any game's "Play" b
 ## Game Showcase
 1. Goblin vs troll game (Inchan)
 2. TicTacToe (Natalie)
-3. Connect4 (?)
+3. Connect4 (Yunhao Qing)
 4. Reversi (Vincent)
-5.
+5. Whack a Mole (Amy Kim)
 Mega-TicTacToe??
 
 ## Basics

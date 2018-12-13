@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game>
+    <name>
+        Whack-A-Mole
+    </name>
+    <info>
+        Try your hand at whacking that vermin!
+    </info>
+    <reference>
+        src/engine/whac_a_mole/Whack_a_mole.XML
+    </reference>
+    <color>
+        Black
+    </color>
+    <displaygraphic>
+        Whack-a-Mole_Background.png
+    </displaygraphic>
+    <tags>
+        Strategy
+    </tags>
+</game>

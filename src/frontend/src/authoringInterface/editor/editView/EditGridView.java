@@ -52,6 +52,7 @@ import java.util.Set;
  *
  * @author Haotian Wang
  * @author Amy Kim
+ * @author jl729
  */
 public class EditGridView implements SubView<ScrollPane> {
     private static final double NODE_TO_CELL_WIDTH_RATIO = 0.8;
@@ -136,7 +137,7 @@ public class EditGridView implements SubView<ScrollPane> {
 
     public void generateTiles(TileInstance tileInstance) {
         int colNum = gridScrollView.getColumnCount();
-        var index = tileInstance.getCoord().getX()*colNum + tileInstance.getCoord().getY();
+        var index = tileInstance.getCoord().getY()*colNum + tileInstance.getCoord().getX();
         createInstanceAtGridCell(tileInstance, (Pane) gridScrollView.getChildren().get(index));
 }
 

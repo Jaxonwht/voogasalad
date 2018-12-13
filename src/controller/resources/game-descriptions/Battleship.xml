@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game>
+    <name>
+        Battleship
+    </name>
+    <info>
+        A strategy game where opponents do their best to sink each other's ships.
+    </info>
+    <reference>
+        src/engine/battleship/battleship.xml
+    </reference>
+    <color>
+        Black
+    </color>
+    <displaygraphic>
+        battleship-background.jpg
+    </displaygraphic>
+    <tags>
+        Strategy Guessing Grid
+    </tags>
+</game>

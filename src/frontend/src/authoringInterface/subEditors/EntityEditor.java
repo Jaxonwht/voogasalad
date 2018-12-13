@@ -231,6 +231,7 @@ public class EntityEditor extends AbstractGameObjectEditor<EntityClass, EntityIn
             imagePanel.getChildren().add(preview);
             preview.setOnMouseClicked(e -> {
                 if (!toRemove.remove(preview)) {
+                    System.out.println(path);
                     toRemove.add(preview);
                     toRemovePath.add(path);
                     preview.setOpacity(REMOVE_OPACITY);
