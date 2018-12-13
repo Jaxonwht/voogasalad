@@ -26,7 +26,10 @@ import javafx.stage.Stage;
 import runningGame.GameWindow;
 import utils.ErrorWindow;
 
+import java.awt.*;
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.function.BiConsumer;
 
 import static authoringInterface.MainAuthoringProgram.SCREEN_HEIGHT;
@@ -234,8 +237,14 @@ public class EditorMenuBarView implements SubView<MenuBar> {
         }
     }
 
-
     void handleHelpDoc(ActionEvent event) {
+        try {
+            Desktop.getDesktop().browse(new URL("https://hackmd.io/s/HJDq6Z0JN").toURI());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
