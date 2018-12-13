@@ -179,12 +179,10 @@ Run the GameLauncher.java to access the game launcher. Click any game's "Play" b
 
 ## Known Bugs
 
-* Redo and Undo are too difficult with our current framework and we did not manage to finish it before the deadline. However, basic framework (Memento Pattern) is set up in our project
-* If the user try to delete the default player, the player will be deleted on the backend but not the front end. When user click on the front end button, it will give a game object class not found error.
-
 ## Unimplemented Features
 
 * Loading player image in the game.
+* Redo and Undo are too difficult with our current framework and we did not manage to finish it before the deadline. However, basic framework (Memento Pattern) is set up in our project
 
 
 ## Design decision
@@ -199,9 +197,10 @@ Run the GameLauncher.java to access the game launcher. Click any game's "Play" b
 
 * User has a social center where he or she can see all the games he or she has created.
 
-* User can create games on detachable tabs.
+* Convenient features; Batch mode and detachable tabs.
 
 * User can save and load the game graphically on the authoring engine; Groovy and Phase nodes are also saved and loaded.
+
 ## Impression
 
 * **Vincent Liu :** VoogaSalad is more challenging compared to the previous 3 projects, Breakout, Cell Society and SLogo. I learnt how to work with a team by using interfaces and I truly feel I can work better in a team setting in the future.
