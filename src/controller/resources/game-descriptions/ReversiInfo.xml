@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game>
     <name>
-        Connect 4
+        Reversi
     </name>
     <info>
-        A strategy game that is a race to the first one to get 4 in a row!
+        A strategy game where opponents takes turn flipping discs on the board.
     </info>
     <reference>
-        src/engine/connect4/Connect4.xml
+        src/engine/reversi/reversi.xml
     </reference>
     <color>
         Black
     </color>
     <displaygraphic>
-        connect4_background.jpeg
+        reversi_background.jpeg
     </displaygraphic>
     <tags>
-        Strategy Guessing Grid
+        Strategy Grid
     </tags>
 </game>
