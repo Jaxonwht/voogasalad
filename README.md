@@ -221,12 +221,13 @@ Run the GameLauncher.java to access the game launcher. Click any game's "Play" b
 
 # Tutorial
 ## Game Showcase
-1. Goblin vs troll game (Inchan)
-2. TicTacToe (Natalie)
-3. Connect4 (Yunhao Qing)
-4. Reversi (Vincent)
-5. Whack a Mole (Amy Kim)
-Mega-TicTacToe??
+* Goblin vs troll game (Inchan)
+* TicTacToe (Natalie)
+* Connect4 (Yunhao)
+* Reversi (Vincent)
+* Battleship (Haotian)
+* Wack-a-mole (Amy)
+* Minesweeper (Jingchao)
 
 ## Basics
 
